@@ -13,7 +13,7 @@ public class Nodo {
     
     String grade;
     double value;
-    Nodo siguiente;
+    Nodo siguiente = null;
 
     public Nodo() {
     }
