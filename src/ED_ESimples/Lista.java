@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ed_listas;
+package ED_ESimples;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -11,11 +11,11 @@ import java.io.OutputStreamWriter;
 
 /**
  *
- * @author Estudiante
+ * @author SC
  */
 public class Lista {
     
-    Nodo cabeza = null;
+    private Nodo cabeza = null;
     
     public boolean vacia(){
         return this.cabeza == null; 
@@ -23,69 +23,69 @@ public class Lista {
     }
     
     public void añadirInicio(Nodo nuevoNodo){
-        nuevoNodo.siguiente = cabeza;
-        cabeza = nuevoNodo;
+        nuevoNodo.setSiguiente(this.cabeza);
+        this.cabeza = nuevoNodo;
     }
     
     public void añadirFinal(Nodo nuevoNodo){
         if (vacia()){
-            cabeza = nuevoNodo;                     
+            this.cabeza = nuevoNodo;                     
         }
         else{
-            Nodo temp = cabeza;
-            while(temp.siguiente != null){
-                temp = temp.siguiente;               
+            Nodo temp = this.cabeza;
+            while(temp.getSiguiente() != null){
+                temp = temp.getSiguiente();         
             }
-            temp.siguiente = nuevoNodo;
+            temp.setSiguiente(nuevoNodo);
         }
     }
     
     public void añadirPosicion(Nodo nuevoNodo, int posicion){
-        Nodo temp = cabeza;
+        Nodo temp = this.cabeza;
         for(int i = 0; i < posicion-1; i++ ){
-            temp = temp.siguiente;
+            temp = temp.getSiguiente();
         }
-        nuevoNodo.siguiente = temp.siguiente;
-        temp.siguiente = nuevoNodo;            
+        nuevoNodo.setSiguiente(temp.getSiguiente()); 
+        temp.setSiguiente(nuevoNodo);           
     }
        
     public void eliminarInicio(){
-        Nodo temp = cabeza;
-        cabeza = cabeza.siguiente;
+        Nodo temp = this.cabeza;
+        this.cabeza = this.cabeza.getSiguiente();
         temp = null;
         System.gc();
     }
     
     public void eliminarFinal(){
-        Nodo pre = cabeza;
-        Nodo temp = cabeza.siguiente.siguiente;
+        Nodo pre = this.cabeza;
+        Nodo temp = this.cabeza.getSiguiente().getSiguiente();
         while (temp != null){            
-            pre = pre.siguiente;
-            temp = temp.siguiente;
+            pre = pre.getSiguiente();
+            temp = temp.getSiguiente();
         }        
-        pre.siguiente = null;
+        pre.setSiguiente(null);
         System.gc();
     }
     
     public void eliminarPosicion(int posicion){
-        Nodo temp = cabeza;
+        Nodo temp = this.cabeza;
         Nodo eliminado;
         for(int i = 0; i < posicion-1; i++){
-            temp = temp.siguiente;
+            temp = temp.getSiguiente();
         }
-        eliminado = temp.siguiente;
-        temp.siguiente = temp.siguiente.siguiente;
+        eliminado = temp.getSiguiente();
+        temp.setSiguiente(temp.getSiguiente().getSiguiente()); 
         eliminado = null;
         System.gc();
     }
     
     public void imprimir(){
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        Nodo temp = cabeza;
+        Nodo temp = this.cabeza;
         try{
             while(temp != null){
                 bw.write(temp.toString());
-                temp = temp.siguiente;
+                temp = temp.getSiguiente();
             }
             bw.flush();
         }
@@ -101,21 +101,12 @@ public class Lista {
         n.añadirInicio(new Nodo("123df", 0));
         n.añadirInicio(new Nodo("123df", 0));  
         n.añadirInicio(new Nodo("123df", 0));
-        n.añadirFinal(new Nodo("2314", 12));        
+        n.añadirFinal(new Nodo("2314", 12));   
+        n.añadirPosicion(ld, 2);
+        n.eliminarPosicion(3);
         n.eliminarFinal();
         n.eliminarFinal();
         n.imprimir();
     }
-    /*    public void añadirFinal(Nodo nuevoNodo){
-        if (vacia()){
-            cabeza = nuevoNodo;                     
-        }
-        else{
-            Nodo temp = cabeza;
-            while(temp.siguiente != null){
-                temp = temp.siguiente;               
-            }
-            temp.siguiente = nuevoNodo;
-        }
-    }*/
+    
 }
