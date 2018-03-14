@@ -11,34 +11,22 @@ package ED_ESimples;
  */
 public class Nodo {
     
-    private String grade;
-    private  double value;
+    private Object o;
     private Nodo siguiente = null;
 
     public Nodo() {
+        
     }
 
-    public Nodo(String grade, double value) {
-        this.grade = grade;
-        this.value = value;
+    public Nodo(Object o) {
+        this.o = o;
     }
-
-    public String getGrade() {
-        return grade;
+    
+    public Nodo clon (){
+        Nodo temp = new Nodo(this);
+        return temp;
     }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public double getValue() {
-        return value;
-    }
-
-    public void setValue(double value) {
-        this.value = value;
-    }
-
+    
     public Nodo getSiguiente() {
         return siguiente;
     }
@@ -46,14 +34,10 @@ public class Nodo {
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Grade: " + this.grade + "\t" + "Value: " + this.value + "\n";
+        return o.toString();
     }
-    
-    
     
 }

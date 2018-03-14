@@ -65,11 +65,11 @@ public class Fila {
     
     public static void main(String[] args) {
         Fila f = new Fila();
-        f.añadir(new Nodo("t1", 5));
-        f.añadir(new Nodo("t2", 4));
-        f.añadir(new Nodo("t3", 3));
-        f.añadir(new Nodo("t4", 2));
-        f.añadir(new Nodo("t5", 1));
+        f.añadir(new Nodo(new Grade("t1", 5)));
+        f.añadir(new Nodo(new Grade("t2", 4)));
+        f.añadir(new Nodo(new Grade("t3", 3)));
+        f.añadir(new Nodo(new Grade("t4", 2)));
+        f.añadir(new Nodo(new Grade("t5", 1)));
         Nodo n = f.sacar();
         f.eliminar();  
         f.imprimir();
