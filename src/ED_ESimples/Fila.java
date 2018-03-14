@@ -19,7 +19,8 @@ public class Fila {
     public boolean vacia (){
         return this.cabeza == null;
     }
-    public void añadir (Nodo nuevoNodo){
+    public void añadir (Object o){
+        Nodo nuevoNodo = new Nodo(o);
         if (vacia()){
             this.cabeza = nuevoNodo;
         }
@@ -65,11 +66,11 @@ public class Fila {
     
     public static void main(String[] args) {
         Fila f = new Fila();
-        f.añadir(new Nodo(new Grade("t1", 5)));
-        f.añadir(new Nodo(new Grade("t2", 4)));
-        f.añadir(new Nodo(new Grade("t3", 3)));
-        f.añadir(new Nodo(new Grade("t4", 2)));
-        f.añadir(new Nodo(new Grade("t5", 1)));
+        f.añadir(new Grade("t1", 5));
+        f.añadir(new Grade("t2", 4));
+        f.añadir(new Grade("t3", 3));
+        f.añadir(new Grade("t4", 2));
+        f.añadir(new Grade("t5", 1));
         Nodo n = f.sacar();
         f.eliminar();  
         f.imprimir();

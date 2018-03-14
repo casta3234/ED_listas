@@ -20,7 +20,8 @@ public class Pila {
         return this.cabeza == null;
     }
     
-    public void agregar(Nodo nuevoNodo){
+    public void agregar(Object o){
+        Nodo nuevoNodo = new Nodo(o);
         nuevoNodo.setSiguiente(this.cabeza);
         this.cabeza = nuevoNodo;
     }
@@ -59,15 +60,15 @@ public class Pila {
     
     public static void main(String[] args) {
     Pila p = new Pila();
-    p.agregar(new Nodo(new Grade("t1", 4)));
-    p.agregar(new Nodo(new Grade("t2", 3)));
-    p.agregar(new Nodo(new Grade("t3", 2)));
-    p.agregar(new Nodo(new Grade("t4", 1)));
+    p.agregar(new Grade("t1", 4));
+    p.agregar(new Grade("t2", 3));
+    p.agregar(new Grade("t3", 2));
+    p.agregar(new Grade("t4", 1));
     p.eliminar();
     Nodo n =p.mirar();
-    Nodo n1 = p.sacar();
+    //Nodo n1 = p.sacar();
     p.imprimir();
-    System.out.println(n.toString() + n1.toString());
+    //System.out.println(n.toString() + n1.toString());
     
     }
 }

@@ -22,12 +22,14 @@ public class Lista {
         
     }
     
-    public void añadirInicio(Nodo nuevoNodo){
+    public void añadirInicio(Object o){
+        Nodo nuevoNodo = new Nodo(o);
         nuevoNodo.setSiguiente(this.cabeza);
         this.cabeza = nuevoNodo;
     }
     
-    public void añadirFinal(Nodo nuevoNodo){
+    public void añadirFinal(Object o){
+        Nodo nuevoNodo = new Nodo(o);
         if (vacia()){
             this.cabeza = nuevoNodo;                     
         }
@@ -40,7 +42,8 @@ public class Lista {
         }
     }
     
-    public void añadirPosicion(Nodo nuevoNodo, int posicion){
+    public void añadirPosicion(Object o, int posicion){
+        Nodo nuevoNodo = new Nodo(o);
         Nodo temp = this.cabeza;
         for(int i = 0; i < posicion-1; i++ ){
             temp = temp.getSiguiente();
@@ -110,10 +113,10 @@ public class Lista {
         Nodo l = new Nodo(new Grade("quiz1", 1.2));
         Nodo ld = new Nodo(new Grade("quiz2", 1.2));
         n.añadirInicio(l);
-        n.añadirInicio (new Nodo (new Grade("quiz3", 0)));
-        n.añadirInicio(new Nodo(new Grade("quiz4", 0)));  
-        n.añadirInicio(new Nodo(new Grade("quiz5", 0)));
-        n.añadirFinal(new Nodo(new Grade("quiz6", 0)));   
+        n.añadirInicio(new Grade("quiz3", 0));
+        n.añadirInicio(new Grade("quiz4", 0));  
+        n.añadirInicio(new Grade("quiz5", 0));
+        n.añadirFinal(new Grade("quiz6", 0));   
         n.añadirPosicion(ld, 2);
         n.eliminarPosicion(3);
         n.eliminarFinal();
