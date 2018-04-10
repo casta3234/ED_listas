@@ -10,6 +10,10 @@ package ED_ESimples;
  * @author SC
  */
 public class Nodo {
+
+    public Object getO() {
+        return o;
+    }
     
     private Object o;
     private Nodo siguiente = null;

@@ -40,6 +40,12 @@ public class Grade {
     public String toString() {
         return "Grade: " + this.grade + "\t" + "Value: " + this.value + "\n";
     }
+
     
+    public boolean equals(Grade o) {
+        return this.grade.equals(o.grade) && this.value == o.value;
+    }
+    
+   
      
 }

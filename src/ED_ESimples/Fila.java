@@ -75,5 +75,6 @@ public class Fila {
         f.eliminar();  
         f.imprimir();
         System.out.println(n.toString()+f.mirar().toString());
+        System.gc();
     }
 }
