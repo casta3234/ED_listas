@@ -8,7 +8,6 @@ package ED_ESimples;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 
 /**
  *
@@ -102,12 +101,13 @@ public class Lista {
         this.cabeza = ptemp.mirar();
     }
     
-    public int buscar(Object o){
-        Nodo temp = this.cabeza;        
+    public int getIndex(Object o){
+        Nodo temp = this.cabeza;
+        Nodo b = new Nodo (o);
         int index = 0;
         
         do {
-            if (temp.getO().equals(o)) {
+            if (temp.equals(b)) {
                 break;
             }            
                 temp = temp.getSiguiente();
@@ -117,15 +117,74 @@ public class Lista {
         return index;
     }
     
-    public Object buscarIndex(int index){
+    public Nodo get(int index){
         Nodo temp = this.cabeza;
-        if (index > 0){
-            for(int i = 0; i < index; i++){
-                temp = temp.getSiguiente();
+        if(index < this.size){
+            if (index > 0){
+                for(int i = 0; i < index; i++){
+                    temp = temp.getSiguiente();
+                }
+                return temp;
+            }
+            else
+                return temp;
+        }
+        else
+            return null;
+    }
+    public Nodo binarySearch (int value, int lowerBound, int upprBound){
+        int middleElement = (lowerBound + upprBound) / 2;
+        int tempid = getIndex(get(middleElement));
+        if (lowerBound == upprBound) {
+            if (tempid == value) {
+                return get(tempid);
+            }
+            else{
+                return null;
             }
         }
-        return temp.getO();
+        else{
+            if (tempid == value){
+                return get(tempid);
+            }
+            else{
+                if (value < tempid){
+                    return binarySearch(value, lowerBound, tempid);
+                }
+                else{
+                    return binarySearch(value, tempid + 1, upprBound);
+                }
+            }
+        }        
     }
+    
+//    public Lista quickSort(Lista unsorted){
+//        if (unsorted.size == 1) {
+//            return unsorted;
+//        }
+//        else{
+//            Nodo pivot = unsorted.cabeza;
+//            Lista less_sublist = new Lista();
+//            Lista great_sublist = new Lista();
+//            
+//            Nodo temp = unsorted.cabeza.getSiguiente();
+//            while(temp == null){
+//                if(temp.id < pivot.id){
+//                    less_sublist.añadirFinal(temp.clon());
+//                }
+//                else{
+//                    great_sublist.añadirFinal(temp.clon());
+//                }
+//                temp.setSiguiente(temp.getSiguiente());
+//            }
+//            less_sublist = quickSort(less_sublist);
+//            great_sublist = quickSort(great_sublist);
+//            
+//            pivot.setSiguiente(great_sublist.cabeza);
+//            less_sublist.añadirFinal(pivot);
+//            return less_sublist;
+//        }
+//    }
     
     public void imprimir(){
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -163,8 +222,11 @@ public class Lista {
         n.imprimir();
 //        System.out.println("");
 //        System.out.println(n.buscarIndex(2));
-        System.out.println(n.buscar(l));
-        
+//       n.binarySearch(3,0,n.size);
+        n.inversa();
+        System.out.println("");
+        n.imprimir();
     }
-    
+   
+            
 }
